@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pup Phoenix's Portal</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            /* This line connects to the image file in your GitHub repo */
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Dark overlay to make the neon pop and text readable */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .portal-box {
+            position: relative;
+            z-index: 2;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(10px); /* Blurs the background behind the box */
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 2px solid #bc13fe; /* Neon purple accent */
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 350px;
+        }
+
+        h2 {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            font-weight: 300;
+            text-shadow: 0 0 10px #bc13fe;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #444;
+            color: #bc13fe;
+            font-size: 1.2rem;
+            text-align: center;
+            border-radius: 8px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input:focus { border-color: #bc13fe; }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #bc13fe;
+            color: #fff;
+            border: none;
+            font-weight: bold;
+            font-size: 1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #fff;
+            color: #bc13fe;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        #status {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            min-height: 1.2em;
+        }
+
+        .error { color: #ff3e3e; }
+        .success { color: #00ff88; }
+    </style>
+</head>
+<body>
+
+    <div class="portal-box">
+        <h2>ACCESS CODE</h2>
+        <input type="text" id="passcode" placeholder="ENTER CODE..." onkeydown="if(event.key==='Enter') access()">
+        <button onclick="access()">Identify</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        function access() {
+            const field = document.getElementById('passcode');
+            const val = field.value.trim().toUpperCase();
+            const log = document.getElementById('status');
+
+            const links = {
+                "BBC": "https://discord.gg",
+                "BBC1": "https://discord.gg",
+                "BBC2": "https://discord.gg",
+                "BBC3": "https://discord.gg",
+                "BWC": "https://discord.gg",
+                "BWC1": "https://discord.gg",
+                "BWC2": "https://discord.gg",
+                "FREAKY": "https://discord.gg",
+                "FRIENK": "https://discord.gg",
+                "GROUP": "https://discord.gg",
+                "MASTER": "https://discord.gg"
+            };
+
+            if (links[val]) {
+                log.className = "success";
+                log.innerText = "ACCESS GRANTED. REDIRECTING...";
+                setTimeout(() => { window.location.href = links[val]; }, 1000);
+            } else {
+                log.className = "error";
+                log.innerText = "DENIED: INVALID CODE";
+                field.value = "";
+            }
+        }
+    </script>
+
+</body>
+</html>
